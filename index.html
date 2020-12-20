@@ -6,9 +6,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/45817be56d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Employees</title>
 </head>
 <body>
+    <!--NAV-->
     <div class="container">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">            
@@ -20,30 +21,56 @@
                           
             </div> 
         </nav>
-
+    <!--MODAL-->
         <div class="modal fade" tabindex="-1" id="ventana-modal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Add Employee</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true"></button>
               </div>
               <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="name" class="control-label"
+                      >Name</label>
+                    <input type="text" class="input-lg form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="mail" class="control-label"
+                      >Email</label>
+                    <input
+                      type="email"
+                      class="input-lg form-control cc-number"
+                      placeholder="example@mail.com"
+                      required/>
+                  </div>
+                  <div class="form-group">
+                    <label for="adress" class="control-label"
+                      >Adress</label>
+                    <textarea type="text" class="input-lg form-control"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="phone" class="control-label"
+                      >Phone</label>
+                    <input type="tel" class="input-lg form-control" />
+                  </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn boton-cancel" data-dismiss="modal" value="Cancel">Cancel</button>
+                <button type="button" class="btn boton-add">Add</button>
               </div>
             </div>
           </div>
         </div>
-
+      </div>
+    <!--FILTER-->
         <div class="filter">
             <form class="filter-input">
                 <input class="form-control me-2" type="search" placeholder="Filter..." aria-label="Filter">
             </form>
         </div>
+    <!--TABLA-->
         <div class="tabla">
           <table class="table table-striped table-hover">
             <thead class="cabecera-tabla">
@@ -67,8 +94,8 @@
                   <input type="checkbox" id="selectAll">
                   <label for="selectAll"></label>
                   </span></th>
-                <td>Mark</td>
-                <td>Otto@mdo</td>
+                <td>Ejemplo</td>
+                <td>ejemplo@mdo</td>
                 <td>Independencia 569</td>
                 <td>5984236589</td>
                 <td>Actions</td>

@@ -23,6 +23,23 @@ body {
     padding: 5px;
 }
 
+/*MODAL*/
+.modal {
+    color: #566787;
+}
+
+.modal-footer {
+    margin: 0px;
+    border-top: 1px solid #e5e5e5;
+    background: #ecf0f1;
+    border-radius: 0 0 3px 3px;
+}
+
+.btn {
+    border-radius: 2px;
+    min-width: 100px;
+}
+
 .boton-add {
     background-color: #5cb85c;
     color: #fff;
@@ -31,10 +48,10 @@ body {
     padding: 5px;
 }
 
-.link {
-    font-size: 13px;
-    color: #fff;
-    margin: 10px;
+.boton-cancel {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
 }
 
 .filter-input {
