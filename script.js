@@ -1,4 +1,4 @@
-const base = "https://5fff0177a4a0dd001701b49e.mockapi.io/";
+const base = "https://tp3-js-1e38b-default-rtdb.firebaseio.com/";
 
 /*inicializar tabla*/
 
@@ -10,3 +10,5 @@ const init = () => {
         });
 };
 init();
+
+
