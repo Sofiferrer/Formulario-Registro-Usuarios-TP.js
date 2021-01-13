@@ -6,10 +6,12 @@ const init = () => {
     fetch(`${base}users.json`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-        });
+            console.log(data);
+            createTable(data);
+        })
 };
 init();
+
 
 const deleteUser = (id) => {
     fetch(`${base}users/${id}.json`, {
@@ -28,6 +30,11 @@ const createTable = (data) => {
     for (let object in data) {
 
         const tr = document.createElement('tr');
+        const checkBox = document.createElement('input');
+        checkBox.setAttribute('type', 'checkbox');
+        const celda = document.createElement('td');
+        tr.appendChild(celda);
+        celda.appendChild(checkBox);
 
         for (let item in data[object]) {
             const td = document.createElement('td');
@@ -39,21 +46,19 @@ const createTable = (data) => {
         botonEliminar.addEventListener('click', () => {
             deleteUser(object);
         });
-        botonEliminar.innerText = 'Eliminar';
+        botonEliminar.innerText = 'El';
         botonEliminar.setAttribute('class', 'btn btn-danger');
-        const tdElim = document.createElement('td');
-        tdElim.appendChild(botonEliminar);
-        tr.appendChild(tdElim);
+        const tdActions = document.createElement('td');
+        tdActions.appendChild(botonEliminar);
 
         const botonEditar = document.createElement('button');
         botonEditar.addEventListener('click', () => {
             window.location = `form.html?name=${object}`;
         });
-        botonEditar.innerText = 'Editar';
+        botonEditar.innerText = 'Ed';
         botonEditar.setAttribute('class', 'btn btn-warning');
-        const tdEdit = document.createElement('td');
-        tdEdit.appendChild(botonEditar);
-        tr.appendChild(tdEdit);
+        tdActions.appendChild(botonEditar);
+        tr.appendChild(tdActions);
 
         tbody.appendChild(tr);
     }
