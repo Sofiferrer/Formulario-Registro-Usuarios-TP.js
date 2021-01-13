@@ -1,4 +1,2 @@
-const abrirModal = () => {
-    const boton = document.getElementById('boton-modal');
+const base = "https://5fff0177a4a0dd001701b49e.mockapi.io/"
 
-}
