@@ -17,12 +17,12 @@
                 Manage <b>Employees</b>
               </span>              
               
-                <a href="#ventana-modal" class="navbar-brand btn boton-add" data-toggle="modal"><i class="fas fa-plus-circle"></i>  Add New Employee</a>
+                <a href="#modaladd" class="navbar-brand btn boton-add" data-toggle="modal"><i class="fas fa-plus-circle"></i>  Add New Employee</a>
                           
             </div> 
         </nav>
-    <!--MODAL-->
-        <div class="modal fade" tabindex="-1" id="ventana-modal">
+    <!--MODAL ADD-->
+        <div class="modal fade" tabindex="-1" id="modaladd">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -58,7 +58,7 @@
                   </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn boton-cancel" data-dismiss="modal" value="Cancel">Cancel</button>
+                <button id="close" type="button" class="btn boton-cancel" data-dismiss="modal" value="Cancel">Cancel</button>
                 <button id="addButton" type="button" class="btn boton-add">Add</button>
               </div>                    
             </div>
@@ -68,7 +68,8 @@
     <!--FILTER-->
         <div class="filter">
             <form class="filter-input">
-                <input class="form-control me-2" type="search" placeholder="Filter..." aria-label="Filter">
+                <input id="filtro" class="form-control me-2" type="search" placeholder="Filter..." aria-label="Filter">
+                <button id="filterButton">Buscar</button>
             </form>
         </div>
     <!--TABLA-->
