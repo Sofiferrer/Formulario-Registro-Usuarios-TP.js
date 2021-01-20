@@ -8,7 +8,7 @@ const init = () => {
         .then(response => response.json())
         .then(data => {
             //console.log(data);
-            createTable(data);
+            loadTable('tbl-users', data);
         })
 };
 init();
@@ -24,52 +24,61 @@ const deleteUser = (id) => {
     }).then(init);
 }
 
-const createTable = (data) => {
-    const tbody = document.getElementById("tbody");
-    tbody.innerHTML = "";
-    for (let object in data) {
-        //console.log(data);
+const loadTableRow = (tr, object) => {
+
+    console.log(object);
+
+    const checkBox = document.createElement('input');
+    checkBox.setAttribute('type', 'checkbox');
+    checkBox.setAttribute('class', 'checks');
+    const celda = document.createElement('td');
+    tr.appendChild(celda);
+    celda.appendChild(checkBox);
+    const tdName = document.createElement('td');
+    const tdEmail = document.createElement('td');
+    const tdAddress = document.createElement('td');
+    const tdPhone = document.createElement('td');
+    tdName.innerHTML = object.name;
+    tdEmail.innerHTML = object.email;
+    tdAddress.innerHTML = object.address;
+    tdPhone.innerHTML = object.phone;
+    tr.appendChild(tdName);
+    tr.appendChild(tdEmail);
+    tr.appendChild(tdAddress);
+    tr.appendChild(tdPhone);
+
+    const botonEditar = document.createElement('a');
+
+    botonEditar.innerHTML = '<i class="fas fa-user-edit"></i>';
+    botonEditar.setAttribute('class', 'btn-warning btn-edit');
+    botonEditar.setAttribute('href', 'pag.html?name=' + object.id);
+    const tdActions = document.createElement('td');
+    tdActions.appendChild(botonEditar);
+
+    const botonEliminar = document.createElement('button');
+    botonEliminar.addEventListener('click', () => {
+        deleteUser(object.id);
+    });
+    botonEliminar.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    botonEliminar.setAttribute('class', 'btn-danger btn-delete');
+    tdActions.appendChild(botonEliminar);
+
+    tr.appendChild(tdActions);
+}
+
+
+const loadTable = (tableId, data) => {
+    const table = document.getElementById(tableId);
+    const tbody = table.getElementsByTagName('tbody')[0];
+
+    tbody.innerHTML = '';
+    for (let objectId in data) {
         const tr = document.createElement('tr');
-        const checkBox = document.createElement('input');
-        checkBox.setAttribute('type', 'checkbox');
-        checkBox.setAttribute('class', 'checks');
-        const celda = document.createElement('td');
-        tr.appendChild(celda);
-        celda.appendChild(checkBox);
-        const tdName = document.createElement('td');
-        const tdEmail = document.createElement('td');
-        const tdAddress = document.createElement('td');
-        const tdPhone = document.createElement('td');
-        tdName.innerHTML = data[object].name;
-        tdEmail.innerHTML = data[object].email;
-        tdAddress.innerHTML = data[object].address;
-        tdPhone.innerHTML = data[object].phone;
-        tr.appendChild(tdName);
-        tr.appendChild(tdEmail);
-        tr.appendChild(tdAddress);
-        tr.appendChild(tdPhone);
-
-        const botonEditar = document.createElement('a');
-
-        botonEditar.innerHTML = '<i class="fas fa-user-edit"></i>';
-        botonEditar.setAttribute('class', 'btn-warning btn-edit');
-        botonEditar.setAttribute('href', 'pag.html?name=' + object);
-        const tdActions = document.createElement('td');
-        tdActions.appendChild(botonEditar);
-
-        const botonEliminar = document.createElement('button');
-        botonEliminar.addEventListener('click', () => {
-            deleteUser(object);
-        });
-        botonEliminar.innerHTML = '<i class="fas fa-trash-alt"></i>';
-        botonEliminar.setAttribute('class', 'btn-danger btn-delete');
-        tdActions.appendChild(botonEliminar);
-
-        tr.appendChild(tdActions);
+        data[objectId].id = objectId;
+        loadTableRow(tr, data[objectId]);
         tbody.appendChild(tr);
     }
 }
-
 
 const filterButton = document.getElementById('filterButton');
 
@@ -80,17 +89,20 @@ const filter = (event) => {
         .then(response => response.json())
         .then(data => {
             const inputFilter = document.getElementById('filtro').value;
-            console.log(inputFilter);
+            //console.log(inputFilter);
+            // const tbody = document.getElementById("tbody");
+            // tbody.innerHTML = "";
 
-            for (let object in data) {
-                const empleados = data[object];
+            let filteredData = {}
 
-                if (empleados.name.includes(inputFilter)) {
+            for (let objectId in data) {
 
-                    console.log(empleados);
-                    createTable([empleados]);
+                if (data[objectId].name.includes(inputFilter)) {
+                    filteredData[objectId] = data[objectId];
                 }
+                loadTable('tbl-users', filteredData);
             }
+            console.log(filteredData)
         })
 }
 
