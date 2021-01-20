@@ -28,7 +28,7 @@ const createTable = (data) => {
     const tbody = document.getElementById("tbody");
     tbody.innerHTML = "";
     for (let object in data) {
-
+        //console.log(data);
         const tr = document.createElement('tr');
         const checkBox = document.createElement('input');
         checkBox.setAttribute('type', 'checkbox');
@@ -81,33 +81,20 @@ const filter = (event) => {
         .then(data => {
             const inputFilter = document.getElementById('filtro').value;
             console.log(inputFilter);
+
             for (let object in data) {
                 const empleados = data[object];
+
                 if (empleados.name.includes(inputFilter)) {
-                    console.log(empleados)
+
+                    console.log(empleados);
+                    createTable([empleados]);
                 }
             }
         })
 }
 
 filterButton.addEventListener('click', filter);
-
-
-/*const filter = () => {
-    const filterParam = inputFilter.value;
-    fetch(`${url}users.json?orderBy="fullName"&startAt"${filterParam}"&endAt="${filterParam}\uf8ff"`, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'Application/json',
-        },
-    }).then(response => response.json()
-    ).then(data => {
-        createTable(data)
-    })
-}*/
-
-//filterButton.addEventListener('click', filter);
-
 
 
 const check = () => {
