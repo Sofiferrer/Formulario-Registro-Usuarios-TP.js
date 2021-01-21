@@ -1,45 +1,38 @@
 const base = "https://tp3-js-1e38b-default-rtdb.firebaseio.com/";
 
-<<<<<<< HEAD
-
-=======
->>>>>>> desarrollo
-/*inicializar tabla*/
-
 const init = () => {
     fetch(`${base}users.json`)
         .then(response => response.json())
         .then(data => {
-<<<<<<< HEAD
-            //console.log(data);
             loadTable('tbl-users', data);
-=======
-            console.log(data);
-            createTable(data);
->>>>>>> desarrollo
         })
 };
 init();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> desarrollo
-const deleteUser = (id) => {
-    fetch(`${base}users/${id}.json`, {
-        method: "DELETE"
-    }).then((response) => {
-        console.log(response);
-        return response.json()
-    }).then((data) => {
-        console.log(data)
-    }).then(init);
+const confirmDelete = (id) => {
+    let respuesta = confirm("Sure you want to delete Employee?");
+    if (respuesta) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-<<<<<<< HEAD
-const loadTableRow = (tr, object) => {
+const deleteUser = (id) => {
+    if (confirmDelete()) {
+        fetch(`${base}users/${id}.json`, {
+            method: "DELETE"
+        }).then((response) => {
+            console.log(response);
+            return response.json()
+        }).then((data) => {
+            console.log(data)
+        }).then(init);
+    }
 
-    console.log(object);
+}
+
+const loadTableRow = (tr, object) => {
 
     const checkBox = document.createElement('input');
     checkBox.setAttribute('type', 'checkbox');
@@ -61,19 +54,18 @@ const loadTableRow = (tr, object) => {
     tr.appendChild(tdPhone);
 
     const botonEditar = document.createElement('a');
-
     botonEditar.innerHTML = '<i class="fas fa-user-edit"></i>';
-    botonEditar.setAttribute('class', 'btn-warning btn-edit');
+    botonEditar.setAttribute('class', 'btn-edit');
     botonEditar.setAttribute('href', 'pag.html?name=' + object.id);
     const tdActions = document.createElement('td');
     tdActions.appendChild(botonEditar);
 
-    const botonEliminar = document.createElement('button');
+    const botonEliminar = document.createElement('a');
+    botonEliminar.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    botonEliminar.setAttribute('class', 'btn-delete');
     botonEliminar.addEventListener('click', () => {
         deleteUser(object.id);
     });
-    botonEliminar.innerHTML = '<i class="fas fa-trash-alt"></i>';
-    botonEliminar.setAttribute('class', 'btn-danger btn-delete');
     tdActions.appendChild(botonEliminar);
 
     tr.appendChild(tdActions);
@@ -85,6 +77,7 @@ const loadTable = (tableId, data) => {
     const tbody = table.getElementsByTagName('tbody')[0];
 
     tbody.innerHTML = '';
+
     for (let objectId in data) {
         const tr = document.createElement('tr');
         data[objectId].id = objectId;
@@ -102,9 +95,6 @@ const filter = (event) => {
         .then(response => response.json())
         .then(data => {
             const inputFilter = document.getElementById('filtro').value;
-            //console.log(inputFilter);
-            // const tbody = document.getElementById("tbody");
-            // tbody.innerHTML = "";
 
             let filteredData = {}
 
@@ -115,7 +105,6 @@ const filter = (event) => {
                 }
                 loadTable('tbl-users', filteredData);
             }
-            console.log(filteredData)
         })
 }
 
@@ -133,44 +122,3 @@ const check = () => {
 }
 
 selectAll.addEventListener('click', check);
-=======
-const createTable = (data) => {
-    const tbody = document.getElementById("tbody");
-    tbody.innerHTML = "";
-    for (let object in data) {
-
-        const tr = document.createElement('tr');
-        const checkBox = document.createElement('input');
-        checkBox.setAttribute('type', 'checkbox');
-        const celda = document.createElement('td');
-        tr.appendChild(celda);
-        celda.appendChild(checkBox);
-
-        for (let item in data[object]) {
-            const td = document.createElement('td');
-            td.innerHTML = data[object][item];
-            tr.appendChild(td);
-        }
-
-        const botonEliminar = document.createElement('button');
-        botonEliminar.addEventListener('click', () => {
-            deleteUser(object);
-        });
-        botonEliminar.innerText = 'El';
-        botonEliminar.setAttribute('class', 'btn btn-danger');
-        const tdActions = document.createElement('td');
-        tdActions.appendChild(botonEliminar);
-
-        const botonEditar = document.createElement('button');
-        botonEditar.addEventListener('click', () => {
-            window.location = `form.html?name=${object}`;
-        });
-        botonEditar.innerText = 'Ed';
-        botonEditar.setAttribute('class', 'btn btn-warning');
-        tdActions.appendChild(botonEditar);
-        tr.appendChild(tdActions);
-
-        tbody.appendChild(tr);
-    }
-}
->>>>>>> desarrollo
