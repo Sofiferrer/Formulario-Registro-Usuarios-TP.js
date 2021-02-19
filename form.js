@@ -89,7 +89,7 @@ const editUser = (event) => {
 const closebutton = document.getElementById('close');
 
 const close = () => {
-    window.location = "pag.html";
+    window.location = "index.html";
 }
 
 closebutton.addEventListener('click', close)
