@@ -66,15 +66,15 @@
         </div>
       </div>
     <!--FILTER-->
-       <div class="filter row d-flex justify-content-md-end">
+        <div class="filter row d-flex justify-content-md-end">
          <div class="col-10 col-md-9">
-            <form class="filter-input">
-            <input id="filtro" class="form-control me-2" type="search" placeholder="Filter..." aria-label="Filter">
+            <form class="filter-input" onsubmit= "filter()">
+              <div class="input-group mb-3">
+                <input id="filtro" type="search" class="form-control" placeholder="Filter..." aria-label="Filter" aria-describedby="filterButton">
+                <button class="btn filterButton" type="submit" id="filterButton"><i class="fas fa-search"></i></button>
+              </div>
             </form>
-         </div>
-         <div class="col-2 mt-4">
-            <button id="filterButton" class="filterButton btn"><i class="fas fa-search"></i></button>
-         </div>       
+         </div>               
         </div>
     <!--TABLA-->
         <div class="tabla">

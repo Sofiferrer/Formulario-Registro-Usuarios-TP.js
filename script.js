@@ -56,7 +56,7 @@ const loadTableRow = (tr, object) => {
     const botonEditar = document.createElement('a');
     botonEditar.innerHTML = '<i class="fas fa-user-edit"></i>';
     botonEditar.setAttribute('class', 'btn-edit');
-    botonEditar.setAttribute('href', 'pag.html?name=' + object.id);
+    botonEditar.setAttribute('href', '?name=' + object.id);
     const tdActions = document.createElement('td');
     tdActions.appendChild(botonEditar);
 
